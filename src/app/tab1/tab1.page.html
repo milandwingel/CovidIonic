@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Covid-19 tabel
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" overflow-scroll="true">
+    <ion-card class="welcome-card">
+      <ion-card-header>
+        <ion-card-subtitle>Aantal corona gevallen van</ion-card-subtitle>
+        <ion-card-title>De hele wereld</ion-card-title>
+      </ion-card-header>
+      <ion-card-content style="width: 50%">
+        <canvas #barChart></canvas>
+      </ion-card-content>
+    </ion-card>
+</ion-content>

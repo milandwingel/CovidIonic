@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Covid-19 tabel
+    </ion-title>
+  </ion-toolbar>
+
+<ion-toolbar>
+  <ion-searchbar debounce="1000" (ionChange)="ionChange($event)">zoeken is in engels met Hoofdletter</ion-searchbar>
+</ion-toolbar>
+
+<ion-content [fullscreen]="true">
+    <ion-card class="welcome-card">
+      <ion-card-header>
+        <ion-card-subtitle>Aantal corona gevallen</ion-card-subtitle>
+        <ion-card-title>{{ this.countryName || 'vul een land in (Engels)'}}  </ion-card-title>
+      </ion-card-header>
+      <ion-card-content style="width: 50%">
+        <canvas #barChart></canvas>
+      </ion-card-content>
+    </ion-card>
+</ion-content>
