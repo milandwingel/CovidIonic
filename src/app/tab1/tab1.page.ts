@@ -22,7 +22,7 @@ export class Tab1Page implements OnInit {
         this.dataService.getTotal().subscribe((response: Summary) => {
             this.data = response.Global;
             this.dataSplit();
-            this.createChart('bar');
+            this.createChart('doughnut');
         });
     }
     createChart(Type) {
@@ -33,8 +33,8 @@ export class Tab1Page implements OnInit {
                 datasets: [{
                     label: 'Corona gevallen',
                     data: [this.data.TotalConfirmed, this.data.TotalDeaths, this.data.TotalRecovered],
-                    backgroundColor: 'rgb(38, 194, 129)',
-                    borderColor: 'rgb(38, 194, 129)',
+                    backgroundColor: ["#f54242", "#42f560", "#4272f5"],
+                    borderColor: '#f000000',
                     borderWidth: 2
                 }]
             },

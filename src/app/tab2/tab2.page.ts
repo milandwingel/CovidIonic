@@ -14,14 +14,51 @@ export class Tab2Page implements OnInit {
     constructor(private dataService: DataService) {
     }
     public data = [];
+    public savedCountrys = [];
     countryNumber = 0;
     countryName = '';
-
+    msg = "";
+    error= ""
     ngOnInit() {
         this.dataService.getTotal().subscribe((response: Summary) => {
             this.data = response.Countries;
             console.log(this.data);
         });
+        this.savedCountrys = this.getSavedCountry()
+    }
+
+    getland(land){
+        this.countryName = land
+        this.getCountry()
+    }
+
+    saveLand(countryName) {
+        let saveCountrie = [];
+
+        if(localStorage.getItem('country')){
+            saveCountrie = this.getSavedCountry();
+        }
+
+        console.log(saveCountrie);
+        if(saveCountrie.includes(countryName)){
+            this.error = "Land is al opgeslagen"
+        }else
+        { saveCountrie.push(
+            countryName
+        );
+
+            this.msg = "land toegevoegd"
+            localStorage.setItem('country', JSON.stringify(saveCountrie))
+            this.savedCountrys = this.getSavedCountry()
+        }
+    }
+    getSavedCountry() {
+        let ls = localStorage.getItem('country');
+
+        let arrayLS = [];
+        arrayLS = JSON.parse(ls);
+
+        return arrayLS;
     }
     ionChange(event) {
         console.log(event.detail.value);
@@ -30,6 +67,8 @@ export class Tab2Page implements OnInit {
     }
 
     getCountry() {
+        this.error = "";
+        this.msg = "";
         for (let i = 0; i < this.data.length; i++) {
             if (this.data[i].Country === this.countryName) {
                 this.countryNumber = i;
@@ -39,14 +78,14 @@ export class Tab2Page implements OnInit {
     }
     createBarChart() {
         this.bars = new Chart(this.barChart.nativeElement, {
-            type: 'doughnut',
+            type: 'bar',
             data: {
                 labels: ['Totaal nieuwe gevallen', 'Totale gevallen', 'Totaal genezen'],
                 datasets: [{
                     label: 'Corona gevallen',
                     data: [this.data[this.countryNumber].NewConfirmed, this.data[this.countryNumber].TotalConfirmed, this.data[this.countryNumber].TotalRecovered],
-                    backgroundColor: 'rgb(255, 55, 64)',
-                    borderColor: 'rgb(255, 0, 0)',
+                    backgroundColor: ["#f54242", "#42f560", "#4272f5"],
+                    borderColor: 'rgb(0, 0, 0)',
                     borderWidth: 2
                 }]
             },
@@ -67,5 +106,3 @@ interface Summary {
     Countries: object[];
     Date: string;
 }
-
-

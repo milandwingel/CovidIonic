@@ -6,17 +6,39 @@
   </ion-toolbar>
 
 <ion-toolbar>
-  <ion-searchbar debounce="1000" (ionChange)="ionChange($event)">zoeken is in engels met Hoofdletter</ion-searchbar>
+  <ion-card-content>
+  <ion-searchbar debounce="1000" (ionChange)="ionChange($event)"></ion-searchbar>
+
+  <ion-card-subtitle class="zoek-text">zoeken is in engels met Hoofdletter </ion-card-subtitle>
+</ion-card-content>
 </ion-toolbar>
 
 <ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Opgeslagen landen</ion-card-title>
+      <ion-card-content >
+        <ion-list id="labels-list">
+
+          <ion-item class="opgeslagen-land"  *ngFor="let item of savedCountrys" lines="none">
+            <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
+            <ion-label (click)="getland(item)" >{{ item }}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card-header>
+  </ion-card>
+
     <ion-card class="welcome-card">
       <ion-card-header>
-        <ion-card-subtitle>Aantal corona gevallen</ion-card-subtitle>
+        <ion-card-subtitle >Aantal corona gevallen</ion-card-subtitle>
         <ion-card-title>{{ this.countryName || 'vul een land in (Engels)'}}  </ion-card-title>
       </ion-card-header>
-      <ion-card-content style="width: 50%">
+      <ion-card-content style="width: 100%">
         <canvas #barChart></canvas>
       </ion-card-content>
+      <ion-button (click)="saveLand(this.countryName)" color="danger">Opslaan</ion-button>
+      <ion-card-subtitle class="msg">{{msg}}</ion-card-subtitle>
+      <ion-card-subtitle class="error">{{error}}</ion-card-subtitle>
     </ion-card>
 </ion-content>

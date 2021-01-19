@@ -1,0 +1,25 @@
+.msg{
+  color: green;
+  font-size: 25px;
+}
+.error{
+  color: rgb(211, 64, 64);;
+  font-size: 25px;
+}
+.opgeslagen-land{
+  cursor: pointer;
+  transition: 0.5s;
+  margin-bottom: -30px;
+  padding-bottom: 15px;
+
+}
+
+.opgeslagen-land:hover{
+  color: rgb(211, 64, 64);
+  font-size: 20px;
+  transition: 0.5s;
+}
+
+ion-list{
+  margin-left: -25px;
+}
