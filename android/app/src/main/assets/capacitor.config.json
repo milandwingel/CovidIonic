@@ -1,5 +1,5 @@
 {
-  "appId": "dev.milan.covid",
+  "appId": "io.ionic.starter",
   "appName": "Covid19",
   "bundledWebRuntime": false,
   "npmClient": "npm",
